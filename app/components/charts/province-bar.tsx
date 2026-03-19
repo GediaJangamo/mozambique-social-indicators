@@ -11,7 +11,7 @@ interface ProvinceBarProps {
 }
 
 export function ProvinceBar({ indicatorId, highlighted = [] }: ProvinceBarProps) {
-    const ind = INDICATORS.find(i => i.id === indicatorId)!;
+    const ind = INDICATORS.find((i: { id: string; }) => i.id === indicatorId)!;
     const sorted = [...PROVINCES]
         .map(p => ({ ...p, value: PROV_CURRENT[p.id][indicatorId], score: getScore(p.id, indicatorId) }))
         .sort((a, b) => b.score - a.score);
@@ -64,3 +64,4 @@ export function ProvinceBar({ indicatorId, highlighted = [] }: ProvinceBarProps)
         </div>
     );
 }
+

@@ -26,25 +26,25 @@ export function MozambiqueMap({
                 <svg
                     viewBox="0 0 280 360"
                     className="w-full max-w-[320px] h-auto"
-                    style={{ filter: "drop-shadow(0 8px 32px rgba(0,0,0,0.3))" }}
+                    style={{ filter: "drop-shadow(0 4px 24px rgba(0,0,0,0.08))" }}
                     onMouseLeave={() => { setHovered(null); setTooltip(null); }}
                 >
                     <defs>
                         <filter id="glow">
-                            <feGaussianBlur stdDeviation="3" result="coloredBlur" />
+                            <feGaussianBlur stdDeviation="2" result="coloredBlur" />
                             <feMerge>
                                 <feMergeNode in="coloredBlur" />
                                 <feMergeNode in="SourceGraphic" />
                             </feMerge>
                         </filter>
                         <linearGradient id="ocean" x1="0%" y1="0%" x2="100%" y2="100%">
-                            <stop offset="0%" stopColor="rgba(59, 130, 246, 0.1)" />
-                            <stop offset="100%" stopColor="rgba(6, 182, 212, 0.05)" />
+                            <stop offset="0%" stopColor="oklch(0.55 0.12 230 / 0.08)" />
+                            <stop offset="100%" stopColor="oklch(0.45 0.12 160 / 0.05)" />
                         </linearGradient>
                     </defs>
 
                     {/* Ocean background */}
-                    <rect x="0" y="0" width="280" height="360" fill="url(#ocean)" rx="16" />
+                    <rect x="0" y="0" width="280" height="360" fill="url(#ocean)" rx="20" />
 
                     {/* Grid lines */}
                     {[50, 100, 150, 200, 250, 300].map(y => (
@@ -73,7 +73,7 @@ export function MozambiqueMap({
                     ))}
 
                     {/* Provinces */}
-                    {PROVINCES.map(p => {
+                    {PROVINCES.map((p: any) => {
                         const pdata = PROVINCE_PATHS[p.id];
                         const score = getScore(p.id, indicatorId);
                         const val = PROV_CURRENT[p.id][indicatorId];
@@ -95,22 +95,22 @@ export function MozambiqueMap({
                                 <path
                                     d={pdata.path}
                                     fill={fill}
-                                    stroke={isSel ? ind.color : isHov ? `${ind.color}cc` : "rgba(255,255,255,0.2)"}
+                                    stroke={isSel ? ind.color : isHov ? `${ind.color}cc` : "oklch(0.92 0.01 80)"}
                                     strokeWidth={isSel ? "3" : isHov ? "2" : "1"}
                                     style={{
-                                        transition: "all 0.2s ease",
-                                        filter: isHov || isSel ? "brightness(1.2)" : "none"
+                                        transition: "all 0.25s cubic-bezier(0.22, 1, 0.36, 1)",
+                                        filter: isHov || isSel ? "brightness(1.05) saturate(1.1)" : "none"
                                     }}
                                 />
                                 <text
                                     x={pdata.cx}
                                     y={pdata.cy - 4}
                                     textAnchor="middle"
-                                    fill={isHov || isSel ? ind.color : "white"}
+                                    fill={isHov || isSel ? ind.color : "oklch(0.2 0.02 45)"}
                                     fontSize={p.id === "maputo_city" ? "6" : "8"}
                                     fontWeight="700"
                                     className="pointer-events-none font-sans"
-                                    style={{ transition: "all 0.15s", textShadow: "0 1px 2px rgba(0,0,0,0.5)" }}
+                                    style={{ transition: "all 0.15s" }}
                                 >
                                     {p.short}
                                 </text>
@@ -118,11 +118,11 @@ export function MozambiqueMap({
                                     x={pdata.cx}
                                     y={pdata.cy + 8}
                                     textAnchor="middle"
-                                    fill={isHov || isSel ? ind.color : "rgba(255,255,255,0.8)"}
+                                    fill={isHov || isSel ? ind.color : "oklch(0.35 0.02 45)"}
                                     fontSize={p.id === "maputo_city" ? "6" : "7"}
                                     fontWeight="600"
                                     className="pointer-events-none font-mono"
-                                    style={{ transition: "all 0.15s", textShadow: "0 1px 2px rgba(0,0,0,0.5)" }}
+                                    style={{ transition: "all 0.15s" }}
                                 >
                                     {val}{ind.unit}
                                 </text>
@@ -132,7 +132,7 @@ export function MozambiqueMap({
 
                     {/* Tooltip */}
                     {tooltip && hovered && (() => {
-                        const p = PROVINCES.find(x => x.id === hovered)!;
+                        const p = PROVINCES.find((x: { id: string; }) => x.id === hovered)!;
                         const val = PROV_CURRENT[hovered][indicatorId];
                         const score = getScore(hovered, indicatorId);
                         const rank = rankProv(hovered, indicatorId);
@@ -297,7 +297,7 @@ export function MozambiqueMap({
                                 <span className="font-serif text-lg font-bold">{p.name}</span>
                             </div>
                             <div className="grid grid-cols-2 gap-2">
-                                {INDICATORS.map(i => {
+                                {INDICATORS.map((i: any) => {
                                     const v = PROV_CURRENT[selectedProvince][i.id];
                                     return (
                                         <div

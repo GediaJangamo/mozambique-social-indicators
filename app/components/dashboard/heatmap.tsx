@@ -1,11 +1,9 @@
 "use client";
 
-import { getScore, INDICATORS, interpolateColor, overallScore, PROV_CURRENT, PROVINCES } from "@/app/lib/data";
+import { useState } from "react";
+import { INDICATORS, getScore, overallScore, PROV_CURRENT, PROVINCES, rankProv, interpolateColor } from "@/app/lib/data";
 import { cn } from "@/app/lib/utils";
 import { Download, FileJson } from "lucide-react";
-import { useState } from "react";
-
-
 
 interface HeatmapProps {
     activeIndicator: string;
@@ -53,7 +51,7 @@ export function Heatmap({ activeIndicator, onIndicatorChange, onProvinceSelect }
     const sortedProvinces = [...PROVINCES].sort((a, b) => overallScore(b.id) - overallScore(a.id));
 
     return (
-        <div className="bg-card rounded-2xl p-6 border border-border animate-fade-up">
+        <div className="bg-card rounded-2xl p-6 border border-border shadow-soft animate-fade-up">
             <div className="flex flex-wrap justify-between items-start gap-4 mb-6">
                 <div>
                     <h2 className="font-serif text-xl font-bold mb-1">Heatmap de Desenvolvimento</h2>
@@ -64,14 +62,14 @@ export function Heatmap({ activeIndicator, onIndicatorChange, onProvinceSelect }
                 <div className="flex gap-2">
                     <button
                         onClick={exportAllCSV}
-                        className="flex items-center gap-2 px-4 py-2 rounded-xl border border-primary/30 bg-primary/10 text-primary text-sm font-medium hover:bg-primary/20 transition-colors"
+                        className="flex items-center gap-2 px-4 py-2 rounded-xl border border-primary/30 bg-primary/10 text-primary text-sm font-medium hover:bg-primary/15 transition-colors"
                     >
                         <Download className="w-4 h-4" />
                         CSV
                     </button>
                     <button
                         onClick={exportJSON}
-                        className="flex items-center gap-2 px-4 py-2 rounded-xl border border-blue-500/30 bg-blue-500/15 text-blue-400 text-sm font-medium hover:bg-blue-500/25 transition-colors"
+                        className="flex items-center gap-2 px-4 py-2 rounded-xl border border-[#3574a5]/30 bg-[#3574a5]/10 text-[#3574a5] text-sm font-medium hover:bg-[#3574a5]/15 transition-colors"
                     >
                         <FileJson className="w-4 h-4" />
                         JSON
@@ -151,9 +149,9 @@ export function Heatmap({ activeIndicator, onIndicatorChange, onProvinceSelect }
                                     <span
                                         className={cn(
                                             "px-2 py-1 rounded-md text-xs font-bold font-mono",
-                                            overall >= 60 ? "bg-green-500/20 text-green-400" :
-                                                overall >= 45 ? "bg-amber-500/20 text-amber-400" :
-                                                    "bg-red-500/20 text-red-400"
+                                            overall >= 60 ? "bg-[#2d8a57]/15 text-[#2d8a57]" :
+                                                overall >= 45 ? "bg-[#c77b3f]/15 text-[#c77b3f]" :
+                                                    "bg-[#c25550]/15 text-[#c25550]"
                                         )}
                                     >
                                         {overall}

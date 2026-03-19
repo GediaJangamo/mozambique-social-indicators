@@ -1,7 +1,3 @@
-// ══════════════════════════════════════════════════════════════════════════════
-// Mozambique Development Data
-// ══════════════════════════════════════════════════════════════════════════════
-
 export const PROVINCES = [
   { id: "maputo_city", name: "Maputo Cidade", short: "MC", pop: 1.1 },
   { id: "maputo", name: "Maputo Prov.", short: "MP", pop: 1.8 },
@@ -19,14 +15,14 @@ export const PROVINCES = [
 export type ProvinceId = typeof PROVINCES[number]["id"];
 
 export const INDICATORS = [
-  { id: "literacy", label: "Literacia", full: "Taxa de Literacia", unit: "%", color: "#22c55e", inverted: false, scoreMin: 0, scoreMax: 100 },
-  { id: "electricity", label: "Electricidade", full: "Acesso à Electricidade", unit: "%", color: "#f59e0b", inverted: false, scoreMin: 0, scoreMax: 100 },
-  { id: "water", label: "Água Potável", full: "Água Potável", unit: "%", color: "#3b82f6", inverted: false, scoreMin: 0, scoreMax: 100 },
-  { id: "health", label: "Saúde", full: "Cobertura de Saúde", unit: "%", color: "#ec4899", inverted: false, scoreMin: 0, scoreMax: 100 },
-  { id: "poverty", label: "Pobreza", full: "Taxa de Pobreza", unit: "%", color: "#ef4444", inverted: true, scoreMin: 0, scoreMax: 100 },
-  { id: "school", label: "Escolaridade", full: "Escolaridade Primária", unit: "%", color: "#8b5cf6", inverted: false, scoreMin: 0, scoreMax: 100 },
-  { id: "infant_mortality", label: "Mort. Infantil", full: "Mortalidade Infantil", unit: "/1000", color: "#06b6d4", inverted: true, scoreMin: 0, scoreMax: 150 },
-  { id: "life_expectancy", label: "Expect. de Vida", full: "Expectativa de Vida", unit: " anos", color: "#10b981", inverted: false, scoreMin: 40, scoreMax: 80 },
+  { id: "literacy", label: "Literacia", full: "Taxa de Literacia", unit: "%", color: "#2d8a57", inverted: false, scoreMin: 0, scoreMax: 100 },
+  { id: "electricity", label: "Electricidade", full: "Acesso à Electricidade", unit: "%", color: "#c77b3f", inverted: false, scoreMin: 0, scoreMax: 100 },
+  { id: "water", label: "Água Potável", full: "Água Potável", unit: "%", color: "#3574a5", inverted: false, scoreMin: 0, scoreMax: 100 },
+  { id: "health", label: "Saúde", full: "Cobertura de Saúde", unit: "%", color: "#b5496d", inverted: false, scoreMin: 0, scoreMax: 100 },
+  { id: "poverty", label: "Pobreza", full: "Taxa de Pobreza", unit: "%", color: "#c25550", inverted: true, scoreMin: 0, scoreMax: 100 },
+  { id: "school", label: "Escolaridade", full: "Escolaridade Primária", unit: "%", color: "#7859a5", inverted: false, scoreMin: 0, scoreMax: 100 },
+  { id: "infant_mortality", label: "Mort. Infantil", full: "Mortalidade Infantil", unit: "/1000", color: "#2a8a8a", inverted: true, scoreMin: 0, scoreMax: 150 },
+  { id: "life_expectancy", label: "Expect. de Vida", full: "Expectativa de Vida", unit: " anos", color: "#5a9e6f", inverted: false, scoreMin: 40, scoreMax: 80 },
 ] as const;
 
 export type IndicatorId = typeof INDICATORS[number]["id"];
@@ -72,7 +68,7 @@ export const PROV_CURRENT: Record<string, Record<string, number>> = {
 
 export const YEARS = [2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022];
 
-export const COMPARE_COLORS = ["#22c55e", "#f59e0b", "#3b82f6", "#ec4899"];
+export const COMPARE_COLORS = ["#c25550", "#2d8a57", "#3574a5", "#c77b3f"];
 
 // SVG Map Paths
 export const PROVINCE_PATHS: Record<string, { path: string; cx: number; cy: number }> = {

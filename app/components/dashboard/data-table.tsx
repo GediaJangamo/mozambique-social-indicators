@@ -1,10 +1,9 @@
 "use client";
 
 import { useState, useMemo } from "react";
-
-import { Search, Download, FileJson, ChevronUp, ChevronDown } from "lucide-react";
-import { getScore, INDICATORS, interpolateColor, overallScore, PROV_CURRENT, PROVINCES, rankProv } from "@/app/lib/data";
+import { INDICATORS, getScore, overallScore, PROV_CURRENT, PROVINCES, rankProv, interpolateColor } from "@/app/lib/data";
 import { cn } from "@/app/lib/utils";
+import { Search, Download, FileJson, ChevronUp, ChevronDown } from "lucide-react";
 
 interface DataTableProps {
     indicatorId: string;
@@ -184,7 +183,7 @@ export function DataTable({ indicatorId }: DataTableProps) {
                         </tr>
                     </thead>
                     <tbody>
-                        {data.map((row, ri) => {
+                        {data.map((row: any, ri: number) => {
                             const score = getScore(row.id, indicatorId);
                             return (
                                 <tr

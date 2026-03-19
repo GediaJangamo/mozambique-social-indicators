@@ -2,8 +2,6 @@
 
 import { COMPARE_COLORS, getScore, INDICATORS } from "@/app/lib/data";
 
-
-
 interface RadarChartProps {
     provinces: string[];
     size?: number;

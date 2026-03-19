@@ -141,7 +141,7 @@ export function LineChart({
                             strokeLinecap="round"
                             strokeLinejoin="round"
                             clipPath="url(#chart-clip)"
-                            style={{ filter: `drop-shadow(0 0 8px ${d.color}50)` }}
+                            style={{ filter: `drop-shadow(0 2px 4px ${d.color}30)` }}
                         />
                         {showDots && prog > 0.9 && d.data.map(p => (
                             <circle

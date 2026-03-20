@@ -8,7 +8,7 @@ import {
 } from "./lib/data";
 import {
   BarChart3, Map, Table2, MapPin, Scale,
-  Grid3X3, Download, FileJson, TrendingUp, Users, Activity
+  Grid3X3, Download, FileJson, Users, Activity
 } from "lucide-react";
 import { StatCard } from "./components/dashboard/stat-card";
 import { LineChart } from "./components/charts/line-chart";
@@ -80,83 +80,90 @@ export default function Home() {
     data: YEARS.map((y, yi) => ({ year: y, value: PROVINCIAL[pid][activeInd][yi] })),
   }));
 
-  // ── shared card classes ────────────────────────────────────────────────────
-  const card = "bg-[#16161f] border border-white/[0.10] rounded-2xl";
+  const card = "bg-[#14141e] border border-white/[0.18] rounded-2xl";
 
   return (
-    <div className="min-h-screen bg-[#11111a] text-white" style={{ fontFamily: "'Space Grotesk', sans-serif" }}>
+    <div
+      className="min-h-screen bg-[#0d0d16] text-white"
+      style={{ fontFamily: "-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" }}
+    >
       <style>{`
-        @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;600&display=swap');
         *, *::before, *::after { box-sizing: border-box; }
         ::-webkit-scrollbar { width: 4px; height: 4px; }
-        ::-webkit-scrollbar-track { background: #11111a; }
-        ::-webkit-scrollbar-thumb { background: #ffffff25; border-radius: 2px; }
-        .serif { font-family: 'Instrument Serif', Georgia, serif; }
-        .mono  { font-family: 'JetBrains Mono', monospace; }
-        @keyframes up { from { opacity:0; transform:translateY(10px); } to { opacity:1; transform:translateY(0); } }
-        .anim { animation: up .35s ease both; }
+        ::-webkit-scrollbar-track { background: #0d0d16; }
+        ::-webkit-scrollbar-thumb { background: #ffffff35; border-radius: 2px; }
+        @keyframes up {
+          from { opacity: 0; transform: translateY(10px); }
+          to   { opacity: 1; transform: translateY(0); }
+        }
+        .anim   { animation: up .35s ease both; }
         .anim-1 { animation: up .35s .06s ease both; }
         .anim-2 { animation: up .35s .12s ease both; }
         .anim-3 { animation: up .35s .18s ease both; }
       `}</style>
 
-      {/* ── LAYOUT WRAPPER: sidebar + content ─────────────────────────────── */}
       <div className="flex min-h-screen">
 
-        {/* ── SIDEBAR ──────────────────────────────────────────────────────── */}
+        {/* this is the sidebar */}
         <aside
-          className="hidden lg:flex flex-col w-60 shrink-0 sticky top-0 h-screen border-r border-white/[0.10]"
-          style={{ background: "#13131e" }}
+          className="hidden lg:flex flex-col w-64 shrink-0 sticky top-0 h-screen border-r border-white/[0.15]"
+          style={{ background: "#0b0b14" }}
         >
           {/* Brand */}
-          <div className="px-5 pt-7 pb-6 border-b border-white/[0.10]">
-            <div className="flex gap-[3px] mb-3">
-              {["#D21034", "#333", "#FCE100", "#009A44"].map(c => (
-                <div key={c} className="w-[5px] h-7 rounded-[2px]" style={{ background: c }} />
+          <div className="px-5 pt-7 pb-6 border-b border-white/[0.15]">
+            <div className="flex gap-[3px] mb-4">
+              {["#D21034", "#555", "#FCE100", "#009A44"].map(c => (
+                <div key={c} className="w-[5px] h-8 rounded-[2px]" style={{ background: c }} />
               ))}
             </div>
-            <p className="serif text-[17px] font-normal leading-snug text-white">
+            <p className="text-[17px] font-bold leading-snug text-white">
               Atlas do<br />Desenvolvimento
             </p>
-            <p className="mono text-[10px] text-white/40 mt-1.5 tracking-widest">MOÇAMBIQUE · 2000–2022</p>
+            <p className="text-[13px] text-white/60 mt-2 font-semibold tracking-wide">
+              MOÇAMBIQUE · 2000–2022
+            </p>
           </div>
 
           {/* Nav */}
           <nav className="flex-1 px-3 py-4 overflow-y-auto">
-            <p className="mono text-[10px] text-white/35 tracking-widest px-2 mb-2">VISTAS</p>
+            <p className="text-[12px] text-white/55 tracking-widest px-2 mb-2 font-bold uppercase">Vistas</p>
             {TABS.map(({ k, label, icon }) => (
               <button
                 key={k}
                 onClick={() => setActiveTab(k)}
                 className={cn(
-                  "flex items-center gap-2.5 w-full px-3 py-2.5 rounded-lg text-sm font-medium mb-0.5 transition-all text-left",
+                  "flex items-center gap-2.5 w-full px-3 py-2.5 rounded-lg text-[14px] font-semibold mb-0.5 transition-all text-left",
                   activeTab === k
-                    ? "bg-white/[0.10] text-white"
-                    : "text-white/45 hover:text-white/75 hover:bg-white/[0.06]"
+                    ? "bg-white/[0.12] text-white"
+                    : "text-white/60 hover:text-white/85 hover:bg-white/[0.07]"
                 )}
-                style={activeTab === k ? { borderLeft: `2px solid ${ind.color}`, paddingLeft: 10 } : { borderLeft: "2px solid transparent" }}
+                style={
+                  activeTab === k
+                    ? { borderLeft: `3px solid ${ind.color}`, paddingLeft: 10 }
+                    : { borderLeft: "3px solid transparent" }
+                }
               >
                 <span style={{ color: activeTab === k ? ind.color : undefined }}>{icon}</span>
                 {label}
               </button>
             ))}
 
-            <p className="mono text-[10px] text-white/35 tracking-widest px-2 mt-5 mb-2">INDICADORES</p>
+            <p className="text-[12px] text-white/55 tracking-widest px-2 mt-5 mb-2 font-bold uppercase">Indicadores</p>
             {INDICATORS.map(i => (
               <button
                 key={i.id}
                 onClick={() => setActiveInd(i.id)}
                 className={cn(
-                  "flex items-center gap-2.5 w-full px-3 py-2 rounded-lg text-[13px] mb-0.5 transition-all text-left",
+                  "flex items-center gap-2.5 w-full px-3 py-2 rounded-lg text-[14px] mb-0.5 transition-all text-left",
                   activeInd === i.id
-                    ? "text-white font-semibold"
-                    : "text-white/45 hover:text-white/70 hover:bg-white/[0.04]"
+                    ? "text-white font-bold"
+                    : "text-white/60 hover:text-white/80 hover:bg-white/[0.05]"
                 )}
-                style={{ background: activeInd === i.id ? `${i.color}22` : undefined }}
+                style={{ background: activeInd === i.id ? `${i.color}25` : undefined }}
               >
                 <span
-                  className="w-2 h-2 rounded-[2px] shrink-0"
-                  style={{ background: i.color, opacity: activeInd === i.id ? 1 : 0.5 }}
+                  className="w-2.5 h-2.5 rounded-[2px] shrink-0"
+                  style={{ background: i.color, opacity: activeInd === i.id ? 1 : 0.6 }}
                 />
                 {i.label}
               </button>
@@ -164,63 +171,60 @@ export default function Home() {
           </nav>
 
           {/* Sidebar footer */}
-          <div className="px-5 py-4 border-t border-white/[0.10]">
+          <div className="px-5 py-4 border-t border-white/[0.15]">
             <div className="flex gap-2">
               <button
                 onClick={exportAllCSV}
-                className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium text-white/50 hover:text-white border border-white/[0.12] hover:border-white/30 transition-all"
+                className="flex items-center gap-1.5 px-3 py-2 rounded-lg text-[13px] font-bold text-white/70 hover:text-white border border-white/[0.20] hover:border-white/40 transition-all"
               >
-                <Download className="w-3 h-3" /> CSV
+                <Download className="w-3.5 h-3.5" /> CSV
               </button>
               <button
                 onClick={exportJSON}
-                className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium text-white/50 hover:text-white border border-white/[0.12] hover:border-white/30 transition-all"
+                className="flex items-center gap-1.5 px-3 py-2 rounded-lg text-[13px] font-bold text-white/70 hover:text-white border border-white/[0.20] hover:border-white/40 transition-all"
               >
-                <FileJson className="w-3 h-3" /> JSON
+                <FileJson className="w-3.5 h-3.5" /> JSON
               </button>
             </div>
-            <p className="mono text-[10px] text-white/30 mt-3 leading-relaxed">
+            <p className="text-[13px] text-white/50 mt-3 leading-relaxed font-medium">
               Banco Mundial · INE · UNDP
             </p>
           </div>
         </aside>
 
-        {/* ── RIGHT SIDE ───────────────────────────────────────────────────── */}
+        {/*RIGHT SIDE */}
         <div className="flex-1 flex flex-col min-w-0">
 
-          {/* ── TOP BAR ─────────────────────────────────────────────────────── */}
+          {/* TOP BAR */}
           <header
-            className="sticky top-0 z-40 flex items-center justify-between px-6 lg:px-8 border-b border-white/[0.10]"
-            style={{ height: 52, background: "#11111a" }}
+            className="sticky top-0 z-40 flex items-center justify-between px-6 lg:px-8 border-b border-white/[0.15]"
+            style={{ height: 54, background: "#0d0d16" }}
           >
-            {/* Mobile brand */}
             <div className="flex items-center gap-3 lg:hidden">
               <div className="flex gap-[3px]">
-                {["#D21034", "#333", "#FCE100", "#009A44"].map(c => (
+                {["#D21034", "#555", "#FCE100", "#009A44"].map(c => (
                   <div key={c} className="w-1 h-5 rounded-sm" style={{ background: c }} />
                 ))}
               </div>
-              <span className="serif text-sm">Atlas do Desenvolvimento</span>
+              <span className="text-[15px] font-bold">Atlas do Desenvolvimento</span>
             </div>
 
-            {/* Active indicator pill */}
             <div className="hidden lg:flex items-center gap-2">
               <span
-                className="w-2 h-2 rounded-[2px]"
+                className="w-2.5 h-2.5 rounded-[2px]"
                 style={{ background: ind.color, boxShadow: `0 0 8px ${ind.color}` }}
               />
-              <span className="mono text-xs text-white/55">{ind.full}</span>
+              <span className="text-[14px] text-white/80 font-semibold">{ind.full}</span>
             </div>
 
-            {/* Mobile tab pills */}
             <div className="flex items-center gap-2 lg:hidden overflow-x-auto">
               {TABS.map(({ k, label }) => (
                 <button
                   key={k}
                   onClick={() => setActiveTab(k)}
                   className={cn(
-                    "mono text-[11px] px-3 py-1 rounded-full whitespace-nowrap transition-all",
-                    activeTab === k ? "text-black font-bold" : "text-white/45 hover:text-white/70"
+                    "text-[12px] px-3 py-1 rounded-full whitespace-nowrap transition-all font-bold",
+                    activeTab === k ? "text-black" : "text-white/60 hover:text-white/85"
                   )}
                   style={{ background: activeTab === k ? ind.color : "transparent" }}
                 >
@@ -230,23 +234,47 @@ export default function Home() {
             </div>
 
             <div className="hidden lg:flex items-center gap-4">
-              <span className="mono text-[11px] text-white/35 tracking-widest">DADOS · 2022</span>
+              <span className="text-[13px] text-white/55 tracking-wide font-semibold">DADOS · 2022</span>
             </div>
           </header>
 
-          {/* ── PAGE TITLE STRIP ────────────────────────────────────────────── */}
+          {/* MOBILE INDICATOR SELECTOR  */}
+          <div className="lg:hidden border-b border-white/[0.15] overflow-x-auto" style={{ background: "#0b0b14" }}>
+            <div className="flex gap-1.5 px-4 py-2.5 w-max">
+              {INDICATORS.map(i => (
+                <button
+                  key={i.id}
+                  onClick={() => setActiveInd(i.id)}
+                  className="flex items-center gap-1.5 px-3 py-1.5 rounded-full text-[13px] font-bold whitespace-nowrap transition-all shrink-0"
+                  style={{
+                    background: activeInd === i.id ? `${i.color}28` : "rgba(255,255,255,0.09)",
+                    color: activeInd === i.id ? i.color : "rgba(255,255,255,0.70)",
+                    border: `1px solid ${activeInd === i.id ? i.color + "60" : "rgba(255,255,255,0.18)"}`,
+                  }}
+                >
+                  <span
+                    className="w-1.5 h-1.5 rounded-[2px] shrink-0"
+                    style={{ background: i.color, opacity: activeInd === i.id ? 1 : 0.6 }}
+                  />
+                  {i.label}
+                </button>
+              ))}
+            </div>
+          </div>
+
+          {/* PAGE TITLE STRIP */}
           <div
-            className="px-6 lg:px-10 py-8 border-b border-white/[0.08]"
-            style={{ background: "linear-gradient(180deg, #1a1a28 0%, #11111a 100%)" }}
+            className="px-6 lg:px-10 py-8 border-b border-white/[0.10]"
+            style={{ background: "linear-gradient(180deg, #181826 0%, #0d0d16 100%)" }}
           >
-            <p className="mono text-[11px] text-white/40 tracking-widest mb-2">
-              {TABS.find(t => t.k === activeTab)?.label.toUpperCase()} · {ind.full.toUpperCase()}
+            <p className="text-[13px] text-white/65 tracking-widest mb-2 font-bold uppercase">
+              {TABS.find(t => t.k === activeTab)?.label} · {ind.full}
             </p>
             <div className="flex items-end justify-between gap-6 flex-wrap">
-              <h1 className="serif text-4xl lg:text-5xl font-normal leading-none">
+              <h1 className="text-4xl lg:text-5xl font-black leading-none">
                 <span style={{ color: ind.color }}>{latest.value}</span>
-                <span className="text-white/30 text-2xl ml-1">{ind.unit}</span>
-                <span className="block text-white/60 text-xl lg:text-2xl mt-1.5 font-normal">
+                <span className="text-white/50 text-2xl ml-1 font-bold">{ind.unit}</span>
+                <span className="block text-white/70 text-xl lg:text-2xl mt-2 font-semibold">
                   nacional · 2022
                 </span>
               </h1>
@@ -258,62 +286,44 @@ export default function Home() {
                 ].map(s => (
                   <div
                     key={s.label}
-                    className="flex flex-col items-center px-4 py-2.5 rounded-xl border border-white/[0.10]"
-                    style={{ background: "rgba(255,255,255,0.05)" }}
+                    className="flex flex-col items-center px-4 py-2.5 rounded-xl border border-white/[0.18]"
+                    style={{ background: "rgba(255,255,255,0.07)" }}
                   >
-                    <span className="text-white/40 mb-1">{s.icon}</span>
-                    <span className="serif text-lg leading-none text-white/90">{s.val}</span>
-                    <span className="mono text-[10px] text-white/35 mt-0.5">{s.label}</span>
+                    <span className="text-white/55 mb-1">{s.icon}</span>
+                    <span className="text-[18px] font-black leading-none text-white">{s.val}</span>
+                    <span className="text-[12px] text-white/60 mt-1 font-semibold">{s.label}</span>
                   </div>
                 ))}
               </div>
             </div>
           </div>
 
-          {/* ── MAIN CONTENT ────────────────────────────────────────────────── */}
+          {/* MAIN CONTENT  */}
           <main className="flex-1 px-6 lg:px-10 py-8 space-y-5">
 
-            {/* ═══ NACIONAL ═══ */}
+            {/* NACIONAl */}
             {activeTab === "nacional" && (
               <div className="space-y-5">
                 <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 anim">
-                  <StatCard
-                    label="Valor Actual"
-                    value={`${latest.value}${ind.unit}`}
-                    subtext="2022 · mais recente"
-                    color={ind.color}
-                  />
-                  <StatCard
-                    label="Variação recente"
-                    value={`${delta >= 0 ? "+" : ""}${delta.toFixed(1)}${ind.unit}`}
-                    subtext="desde 2020"
-                    color={delta >= 0 ? "#22c55e" : "#ef4444"}
-                  />
-                  <StatCard
-                    label={ind.inverted ? "Redução total" : "Crescimento total"}
-                    value={`${ind.inverted ? "−" : "+"}${Math.abs(latest.value - natData[0].value).toFixed(1)}${ind.unit}`}
-                    subtext="desde 2000"
-                    color="#a78bfa"
-                  />
-                  <StatCard
-                    label="Média Provincial"
-                    value={`${(PROVINCES.reduce((s, p) => s + PROV_CURRENT[p.id][activeInd], 0) / PROVINCES.length).toFixed(1)}${ind.unit}`}
-                    subtext="11 províncias"
-                    color="#f59e0b"
-                  />
+                  <StatCard label="Valor Actual" value={`${latest.value}${ind.unit}`} subtext="2022 · mais recente" color={ind.color} />
+                  <StatCard label="Variação recente" value={`${delta >= 0 ? "+" : ""}${delta.toFixed(1)}${ind.unit}`} subtext="desde 2020" color={delta >= 0 ? "#22c55e" : "#ef4444"} />
+                  <StatCard label={ind.inverted ? "Redução total" : "Crescimento total"} value={`${ind.inverted ? "−" : "+"}${Math.abs(latest.value - natData[0].value).toFixed(1)}${ind.unit}`} subtext="desde 2000" color="#a78bfa" />
+                  <StatCard label="Média Provincial" value={`${(PROVINCES.reduce((s, p) => s + PROV_CURRENT[p.id][activeInd], 0) / PROVINCES.length).toFixed(1)}${ind.unit}`} subtext="11 províncias" color="#f59e0b" />
                 </div>
 
                 <div className={cn(card, "p-6 anim-1")}>
                   <div className="flex items-start justify-between gap-4 mb-6 flex-wrap">
                     <div>
-                      <div className="flex items-center gap-2.5 mb-1">
-                        <span className="w-2.5 h-2.5 rounded-[2px]" style={{ background: ind.color }} />
-                        <h2 className="serif text-2xl">{ind.full}</h2>
+                      <div className="flex items-center gap-2.5 mb-2">
+                        <span className="w-3 h-3 rounded-[2px]" style={{ background: ind.color }} />
+                        <h2 className="text-[22px] font-bold text-white">{ind.full}</h2>
                       </div>
-                      <p className="mono text-xs text-white/50 pl-5">Evolução nacional · 2000–2022 · Banco Mundial</p>
+                      <p className="text-[13px] text-white/65 pl-6 font-medium">
+                        Evolução nacional · 2000–2022 · Banco Mundial
+                      </p>
                     </div>
-                    <div className="serif text-5xl leading-none" style={{ color: ind.color }}>
-                      {latest.value}<span className="text-2xl text-white/35">{ind.unit}</span>
+                    <div className="text-[48px] font-black leading-none" style={{ color: ind.color }}>
+                      {latest.value}<span className="text-[22px] text-white/45 font-bold">{ind.unit}</span>
                     </div>
                   </div>
 
@@ -321,20 +331,20 @@ export default function Home() {
                     <LineChart datasets={[{ label: "Nacional", color: ind.color, data: natData }]} height={260} />
                   )}
 
-                  <div className="flex gap-2 flex-wrap mt-5 pt-4 border-t border-white/[0.08]">
+                  <div className="flex gap-2 flex-wrap mt-5 pt-4 border-t border-white/[0.10]">
                     {natData.map(d => (
                       <div
                         key={d.year}
                         className="px-3 py-2 rounded-lg border transition-all"
                         style={{
-                          borderColor: d.year === latest.year ? `${ind.color}70` : "rgba(255,255,255,0.09)",
-                          background: d.year === latest.year ? `${ind.color}18` : "rgba(255,255,255,0.04)",
+                          borderColor: d.year === latest.year ? `${ind.color}80` : "rgba(255,255,255,0.14)",
+                          background: d.year === latest.year ? `${ind.color}22` : "rgba(255,255,255,0.05)",
                         }}
                       >
-                        <div className="mono text-xs font-semibold" style={{ color: d.year === latest.year ? ind.color : "rgba(255,255,255,0.6)" }}>
+                        <div className="text-[13px] font-bold" style={{ color: d.year === latest.year ? ind.color : "rgba(255,255,255,0.80)" }}>
                           {d.value}{ind.unit}
                         </div>
-                        <div className="mono text-[10px] text-white/35">{d.year}</div>
+                        <div className="text-[12px] text-white/55 font-semibold">{d.year}</div>
                       </div>
                     ))}
                   </div>
@@ -342,8 +352,8 @@ export default function Home() {
 
                 <div className={cn(card, "p-6 anim-2")}>
                   <div className="flex items-center gap-2.5 mb-5">
-                    <span className="w-2.5 h-2.5 rounded-[2px]" style={{ background: ind.color }} />
-                    <h3 className="serif text-xl">Ranking Provincial — {ind.label}</h3>
+                    <span className="w-3 h-3 rounded-[2px]" style={{ background: ind.color }} />
+                    <h3 className="text-[20px] font-bold text-white">Ranking Provincial — {ind.label}</h3>
                   </div>
                   <ProvinceBar indicatorId={activeInd} />
                 </div>
@@ -354,8 +364,8 @@ export default function Home() {
             {activeTab === "mapa" && (
               <div className={cn(card, "p-6 anim")}>
                 <div className="flex items-center gap-2.5 mb-5">
-                  <span className="w-2.5 h-2.5 rounded-[2px]" style={{ background: ind.color }} />
-                  <h2 className="serif text-2xl">{ind.full} por Província</h2>
+                  <span className="w-3 h-3 rounded-[2px]" style={{ background: ind.color }} />
+                  <h2 className="text-[22px] font-bold text-white">{ind.full} por Província</h2>
                 </div>
                 <MozambiqueMap
                   indicatorId={activeInd}
@@ -365,20 +375,19 @@ export default function Home() {
               </div>
             )}
 
-            {/* ═══ TABELA ═══ */}
+            {/* TABELA */}
             {activeTab === "tabela" && (
               <div className="anim">
                 <DataTable indicatorId={activeInd} />
               </div>
             )}
 
-            {/* ═══ PROVINCIAL ═══ */}
+            {/* PROVINCIAL  */}
             {activeTab === "provincial" && (
               <div className="space-y-5">
-                {/* Selector */}
                 <div className={cn(card, "p-5 anim")}>
-                  <p className="mono text-xs text-white/45 tracking-widest mb-3">
-                    SELECCIONAR PROVÍNCIAS · MÁX. 4
+                  <p className="text-[13px] text-white/65 tracking-wide mb-3 font-bold uppercase">
+                    Seleccionar Províncias · Máx. 4
                   </p>
                   <div className="flex flex-wrap gap-2">
                     {PROVINCES.map(p => {
@@ -389,15 +398,17 @@ export default function Home() {
                         <button
                           key={p.id}
                           onClick={() => toggleProv(p.id)}
-                          className="px-3.5 py-1.5 rounded-full text-sm font-medium transition-all"
+                          className="px-3.5 py-1.5 rounded-full text-[14px] font-bold transition-all"
                           style={{
-                            background: isOn ? `${col}22` : "rgba(255,255,255,0.07)",
-                            color: isOn ? col : "rgba(255,255,255,0.60)",
-                            border: `1px solid ${isOn ? col + "55" : "rgba(255,255,255,0.12)"}`,
+                            background: isOn ? `${col}25` : "rgba(255,255,255,0.09)",
+                            color: isOn ? col : "rgba(255,255,255,0.75)",
+                            border: `1px solid ${isOn ? col + "60" : "rgba(255,255,255,0.18)"}`,
                             boxShadow: isOn ? `0 0 16px ${col}30` : "none",
                           }}
                         >
-                          {isOn && <span className="inline-block w-1.5 h-1.5 rounded-full mr-1.5 align-middle" style={{ background: col }} />}
+                          {isOn && (
+                            <span className="inline-block w-1.5 h-1.5 rounded-full mr-1.5 align-middle" style={{ background: col }} />
+                          )}
                           {p.name}
                         </button>
                       );
@@ -407,8 +418,8 @@ export default function Home() {
 
                 {selProvs.length === 0 ? (
                   <div className={cn(card, "p-16 text-center anim-1")}>
-                    <MapPin className="w-10 h-10 mx-auto mb-3 text-white/20" />
-                    <p className="serif text-xl text-white/50">Nenhuma província seleccionada</p>
+                    <MapPin className="w-10 h-10 mx-auto mb-3 text-white/30" />
+                    <p className="text-[18px] font-semibold text-white/60">Nenhuma província seleccionada</p>
                   </div>
                 ) : (
                   <>
@@ -426,39 +437,32 @@ export default function Home() {
                           <div
                             key={pid}
                             className="rounded-2xl p-5 border-2 transition-all anim"
-                            style={{
-                              background: "#16161f",
-                              borderColor: `${col}40`,
-                              boxShadow: `0 0 40px ${col}12`,
-                            }}
+                            style={{ background: "#14141e", borderColor: `${col}45`, boxShadow: `0 0 40px ${col}15` }}
                           >
                             <div className="flex justify-between items-start mb-4">
                               <div>
                                 <div className="flex items-center gap-2 mb-1">
-                                  <span className="w-2.5 h-2.5 rounded-full" style={{ background: col, boxShadow: `0 0 6px ${col}` }} />
-                                  <h3 className="serif text-xl">{p.name}</h3>
+                                  <span className="w-3 h-3 rounded-full" style={{ background: col, boxShadow: `0 0 6px ${col}` }} />
+                                  <h3 className="text-[20px] font-bold text-white">{p.name}</h3>
                                 </div>
-                                <p className="mono text-xs text-white/45 pl-4">
+                                <p className="text-[13px] text-white/65 pl-5 font-semibold">
                                   {p.pop}M hab · Rank <strong style={{ color: col }}>#{rk}</strong>
                                 </p>
                               </div>
-                              <span
-                                className="mono text-xs font-bold px-2.5 py-1 rounded-full"
-                                style={{ background: `${col}25`, color: col }}
-                              >
+                              <span className="text-[13px] font-bold px-3 py-1 rounded-full" style={{ background: `${col}28`, color: col }}>
                                 {ind.inverted ? "−" : "+"}{Math.abs(Number(tDelta))}{ind.unit}
                               </span>
                             </div>
 
                             <div
                               className="rounded-xl p-4 mb-4"
-                              style={{ background: `linear-gradient(135deg,${col}20,${col}08)`, border: `1px solid ${col}30` }}
+                              style={{ background: `linear-gradient(135deg,${col}22,${col}0a)`, border: `1px solid ${col}35` }}
                             >
-                              <div className="serif text-4xl" style={{ color: col }}>
-                                {val}<span className="text-lg opacity-60">{ind.unit}</span>
+                              <div className="text-[40px] font-black" style={{ color: col }}>
+                                {val}<span className="text-[18px] font-bold opacity-70">{ind.unit}</span>
                               </div>
-                              <div className="mono text-xs mt-1.5" style={{ color: `${col}cc` }}>{ind.full}</div>
-                              <div className="h-1.5 rounded-full mt-3 overflow-hidden" style={{ background: "rgba(255,255,255,0.10)" }}>
+                              <div className="text-[13px] mt-1.5 font-semibold" style={{ color: `${col}dd` }}>{ind.full}</div>
+                              <div className="h-1.5 rounded-full mt-3 overflow-hidden" style={{ background: "rgba(255,255,255,0.12)" }}>
                                 <div className="h-full rounded-full" style={{ width: `${sc}%`, background: col }} />
                               </div>
                             </div>
@@ -473,20 +477,20 @@ export default function Home() {
                               </div>
                             )}
 
-                            <div className="grid grid-cols-2 gap-2 pt-4 border-t border-white/[0.08]">
+                            <div className="grid grid-cols-2 gap-2 pt-4 border-t border-white/[0.10]">
                               {INDICATORS.slice(0, 4).map(i => (
                                 <div
                                   key={i.id}
                                   onClick={() => setActiveInd(i.id)}
                                   className="p-2.5 rounded-lg cursor-pointer transition-all hover:opacity-90"
                                   style={{
-                                    background: activeInd === i.id ? `${i.color}22` : "rgba(255,255,255,0.05)",
-                                    border: `1px solid ${activeInd === i.id ? i.color + "50" : "rgba(255,255,255,0.08)"}`,
+                                    background: activeInd === i.id ? `${i.color}25` : "rgba(255,255,255,0.06)",
+                                    border: `1px solid ${activeInd === i.id ? i.color + "55" : "rgba(255,255,255,0.13)"}`,
                                   }}
                                 >
-                                  <div className="mono text-[10px] mb-0.5 font-medium" style={{ color: i.color }}>{i.label}</div>
-                                  <div className="mono text-sm font-bold" style={{ color: i.color }}>
-                                    {PROV_CURRENT[pid][i.id]}<span className="text-[10px] opacity-60">{i.unit}</span>
+                                  <div className="text-[12px] mb-0.5 font-bold" style={{ color: i.color }}>{i.label}</div>
+                                  <div className="text-[15px] font-black" style={{ color: i.color }}>
+                                    {PROV_CURRENT[pid][i.id]}<span className="text-[11px] opacity-65 font-bold">{i.unit}</span>
                                   </div>
                                 </div>
                               ))}
@@ -498,8 +502,8 @@ export default function Home() {
 
                     <div className={cn(card, "p-6 anim-1")}>
                       <div className="flex items-center gap-2.5 mb-5">
-                        <span className="w-2.5 h-2.5 rounded-[2px]" style={{ background: ind.color }} />
-                        <h3 className="serif text-lg">Ranking — {ind.full}</h3>
+                        <span className="w-3 h-3 rounded-[2px]" style={{ background: ind.color }} />
+                        <h3 className="text-[18px] font-bold text-white">Ranking — {ind.full}</h3>
                       </div>
                       <ProvinceBar indicatorId={activeInd} highlighted={selProvs} />
                     </div>
@@ -508,11 +512,13 @@ export default function Home() {
               </div>
             )}
 
-            {/* ═══ COMPARAR ═══ */}
+            {/* COMPARAR  */}
             {activeTab === "comparar" && (
               <div className="space-y-5">
                 <div className={cn(card, "p-5 anim")}>
-                  <p className="mono text-xs text-white/45 tracking-widest mb-3">COMPARAR PROVÍNCIAS · MÁX. 4</p>
+                  <p className="text-[13px] text-white/65 tracking-wide mb-3 font-bold uppercase">
+                    Comparar Províncias · Máx. 4
+                  </p>
                   <div className="flex flex-wrap gap-2">
                     {PROVINCES.map(p => {
                       const isOn = selProvs.includes(p.id);
@@ -522,11 +528,11 @@ export default function Home() {
                         <button
                           key={p.id}
                           onClick={() => toggleProv(p.id)}
-                          className="px-3.5 py-1.5 rounded-full text-sm font-medium transition-all"
+                          className="px-3.5 py-1.5 rounded-full text-[14px] font-bold transition-all"
                           style={{
-                            background: isOn ? `${col}22` : "rgba(255,255,255,0.07)",
-                            color: isOn ? col : "rgba(255,255,255,0.60)",
-                            border: `1px solid ${isOn ? col + "55" : "rgba(255,255,255,0.12)"}`,
+                            background: isOn ? `${col}25` : "rgba(255,255,255,0.09)",
+                            color: isOn ? col : "rgba(255,255,255,0.75)",
+                            border: `1px solid ${isOn ? col + "60" : "rgba(255,255,255,0.18)"}`,
                           }}
                         >
                           {p.name}
@@ -535,11 +541,13 @@ export default function Home() {
                     })}
                   </div>
                   {selProvs.length > 0 && (
-                    <div className="flex gap-4 mt-4 pt-4 border-t border-white/[0.08] flex-wrap">
+                    <div className="flex gap-4 mt-4 pt-4 border-t border-white/[0.10] flex-wrap">
                       {selProvs.map((pid, ci) => (
                         <div key={pid} className="flex items-center gap-2">
-                          <span className="w-2.5 h-2.5 rounded-[2px]" style={{ background: COMPARE_COLORS[ci] }} />
-                          <span className="text-sm text-white/70">{PROVINCES.find(p => p.id === pid)!.name}</span>
+                          <span className="w-3 h-3 rounded-[2px]" style={{ background: COMPARE_COLORS[ci] }} />
+                          <span className="text-[14px] font-semibold text-white/85">
+                            {PROVINCES.find(p => p.id === pid)!.name}
+                          </span>
                         </div>
                       ))}
                     </div>
@@ -548,22 +556,22 @@ export default function Home() {
 
                 {selProvs.length < 2 ? (
                   <div className={cn(card, "p-16 text-center anim-1")}>
-                    <Scale className="w-10 h-10 mx-auto mb-3 text-white/20" />
-                    <p className="serif text-xl text-white/50">Seleccione pelo menos 2 províncias</p>
+                    <Scale className="w-10 h-10 mx-auto mb-3 text-white/30" />
+                    <p className="text-[18px] font-semibold text-white/60">Seleccione pelo menos 2 províncias</p>
                   </div>
                 ) : (
                   <>
                     <div className={cn(card, "p-6 anim-1")}>
-                      <div className="flex items-center gap-2.5 mb-1">
-                        <span className="w-2.5 h-2.5 rounded-[2px]" style={{ background: ind.color }} />
-                        <h3 className="serif text-2xl">{ind.full} · 2015–2022</h3>
+                      <div className="flex items-center gap-2.5 mb-2">
+                        <span className="w-3 h-3 rounded-[2px]" style={{ background: ind.color }} />
+                        <h3 className="text-[22px] font-bold text-white">{ind.full} · 2015–2022</h3>
                       </div>
-                      <p className="mono text-xs text-white/40 mb-5 pl-5">Evolução temporal comparada</p>
+                      <p className="text-[13px] text-white/60 mb-5 pl-6 font-medium">Evolução temporal comparada</p>
                       {mounted && <LineChart datasets={compareDS} height={300} />}
                     </div>
 
                     <div className={cn(card, "p-6 anim-2")}>
-                      <h3 className="serif text-2xl mb-5">Todos os Indicadores</h3>
+                      <h3 className="text-[22px] font-bold text-white mb-5">Todos os Indicadores</h3>
                       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3">
                         {INDICATORS.map(i => {
                           const vals = selProvs.map(pid => ({ pid, val: PROV_CURRENT[pid][i.id], score: getScore(pid, i.id) }));
@@ -574,15 +582,17 @@ export default function Home() {
                               onClick={() => setActiveInd(i.id)}
                               className="p-4 rounded-xl cursor-pointer transition-all border"
                               style={{
-                                background: activeInd === i.id ? `${i.color}15` : "rgba(255,255,255,0.04)",
-                                borderColor: activeInd === i.id ? `${i.color}60` : "rgba(255,255,255,0.09)",
+                                background: activeInd === i.id ? `${i.color}18` : "rgba(255,255,255,0.05)",
+                                borderColor: activeInd === i.id ? `${i.color}65` : "rgba(255,255,255,0.13)",
                               }}
                             >
                               <div className="flex items-center gap-2 mb-3">
-                                <span className="w-2 h-2 rounded-full" style={{ background: i.color }} />
-                                <span className="text-sm font-semibold text-white/80">{i.full}</span>
+                                <span className="w-2.5 h-2.5 rounded-full" style={{ background: i.color }} />
+                                <span className="text-[13px] font-bold text-white/90">{i.full}</span>
                                 {activeInd === i.id && (
-                                  <span className="mono text-[10px] px-1.5 py-0.5 rounded-full ml-auto font-bold" style={{ background: `${i.color}30`, color: i.color }}>ACTIVO</span>
+                                  <span className="text-[11px] px-1.5 py-0.5 rounded-full ml-auto font-black" style={{ background: `${i.color}35`, color: i.color }}>
+                                    ACTIVO
+                                  </span>
                                 )}
                               </div>
                               <div className="space-y-2">
@@ -591,13 +601,16 @@ export default function Home() {
                                   const isW = v.score === maxS;
                                   return (
                                     <div key={v.pid} className="flex items-center gap-2">
-                                      <span className="mono text-xs font-bold w-7" style={{ color: col }}>
+                                      <span className="text-[13px] font-black w-7" style={{ color: col }}>
                                         {PROVINCES.find(p => p.id === v.pid)!.short}
                                       </span>
-                                      <div className="flex-1 h-2 rounded-full overflow-hidden" style={{ background: "rgba(255,255,255,0.09)" }}>
+                                      <div className="flex-1 h-2 rounded-full overflow-hidden" style={{ background: "rgba(255,255,255,0.11)" }}>
                                         <div className="h-full rounded-full transition-all duration-500" style={{ width: `${v.score}%`, background: col }} />
                                       </div>
-                                      <span className="mono text-xs min-w-10 text-right" style={{ color: isW ? col : "rgba(255,255,255,0.40)", fontWeight: isW ? 700 : 400 }}>
+                                      <span
+                                        className="text-[13px] min-w-10 text-right"
+                                        style={{ color: isW ? col : "rgba(255,255,255,0.60)", fontWeight: isW ? 800 : 600 }}
+                                      >
                                         {v.val}{i.unit}
                                       </span>
                                     </div>
@@ -612,20 +625,22 @@ export default function Home() {
 
                     <div className="grid grid-cols-1 lg:grid-cols-3 gap-5">
                       <div className={cn(card, "p-6 flex flex-col items-center gap-4 anim-3")}>
-                        <p className="mono text-xs text-white/45 tracking-widest">PERFIL GLOBAL</p>
+                        <p className="text-[13px] text-white/65 tracking-wide font-bold uppercase">Perfil Global</p>
                         <RadarChart provinces={selProvs} size={220} />
                         <div className="space-y-2 w-full">
                           {selProvs.map((pid, ci) => (
                             <div key={pid} className="flex items-center gap-2">
-                              <span className="w-2.5 h-2.5 rounded-[2px]" style={{ background: COMPARE_COLORS[ci] }} />
-                              <span className="text-sm text-white/70">{PROVINCES.find(p => p.id === pid)!.name}</span>
+                              <span className="w-3 h-3 rounded-[2px]" style={{ background: COMPARE_COLORS[ci] }} />
+                              <span className="text-[14px] font-semibold text-white/85">
+                                {PROVINCES.find(p => p.id === pid)!.name}
+                              </span>
                             </div>
                           ))}
                         </div>
                       </div>
 
                       <div className={cn(card, "p-6 lg:col-span-2 anim-3")}>
-                        <p className="serif text-xl mb-5">Score de Desenvolvimento Global</p>
+                        <p className="text-[20px] font-bold text-white mb-5">Score de Desenvolvimento Global</p>
                         <div className="space-y-5">
                           {selProvs.map((pid, ci) => {
                             const sc = overallScore(pid);
@@ -634,15 +649,15 @@ export default function Home() {
                             return (
                               <div key={pid}>
                                 <div className="flex justify-between items-baseline mb-2">
-                                  <span className="text-base text-white/75">{p.name}</span>
-                                  <span className="serif text-2xl" style={{ color: col }}>
-                                    {sc}<span className="text-sm opacity-50">/100</span>
+                                  <span className="text-[16px] font-semibold text-white/85">{p.name}</span>
+                                  <span className="text-[24px] font-black" style={{ color: col }}>
+                                    {sc}<span className="text-[14px] opacity-55 font-bold">/100</span>
                                   </span>
                                 </div>
-                                <div className="h-3 rounded-full overflow-hidden" style={{ background: "rgba(255,255,255,0.08)" }}>
+                                <div className="h-3 rounded-full overflow-hidden" style={{ background: "rgba(255,255,255,0.10)" }}>
                                   <div
                                     className="h-full rounded-full transition-all duration-700"
-                                    style={{ width: `${sc}%`, background: col, boxShadow: `0 0 10px ${col}50` }}
+                                    style={{ width: `${sc}%`, background: col, boxShadow: `0 0 10px ${col}55` }}
                                   />
                                 </div>
                               </div>
@@ -656,7 +671,7 @@ export default function Home() {
               </div>
             )}
 
-            {/* ═══ HEATMAP ═══ */}
+            {/* HEATMAP  */}
             {activeTab === "heatmap" && (
               <div className="anim">
                 <Heatmap
@@ -669,17 +684,24 @@ export default function Home() {
 
           </main>
 
-          {/* ── FOOTER ──────────────────────────────────────────────────────── */}
-          <footer className="px-6 lg:px-10 py-5 border-t border-white/[0.10] flex items-center justify-between gap-4 flex-wrap" style={{ background: "#13131e" }}>
+          {/* FOOTER */}
+          <footer
+            className="px-6 lg:px-10 py-5 border-t border-white/[0.15] flex items-center justify-between gap-4 flex-wrap"
+            style={{ background: "#0b0b14" }}
+          >
             <div className="flex items-center gap-3">
               <div className="flex gap-[3px]">
-                {["#D21034", "#333", "#FCE100", "#009A44"].map(c => (
-                  <div key={c} className="w-1 h-3.5 rounded-sm" style={{ background: c }} />
+                {["#D21034", "#555", "#FCE100", "#009A44"].map(c => (
+                  <div key={c} className="w-1 h-4 rounded-sm" style={{ background: c }} />
                 ))}
               </div>
-              <span className="mono text-xs text-white/40">Atlas do Desenvolvimento · Moçambique</span>
+              <span className="text-[13px] text-white/60 font-semibold">
+                Atlas do Desenvolvimento · Moçambique
+              </span>
             </div>
-            <span className="mono text-xs text-white/30">Banco Mundial · INE · UNDP · 2000–2022</span>
+            <span className="text-[13px] text-white/50 font-medium">
+              Banco Mundial · INE · UNDP · 2000–2022
+            </span>
           </footer>
 
         </div>

@@ -40,10 +40,7 @@ This application allows users to explore different indicators in an intuitive wa
 
 ```bash
 # Clone the repository
-git clone <your-repo>
-
-# Navigate into the project folder
-cd project-name
+git clone <https://github.com/GediaJangamo/mozambique-social-indicators.git>
 
 # Install dependencies
 yarn

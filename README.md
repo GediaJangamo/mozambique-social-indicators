@@ -1,36 +1,96 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🇲🇿 Mozambique Social Indicators Dashboard
+
+An interactive platform for visualizing and analyzing social indicators in Mozambique, designed to make data more accessible and support data-driven decision-making.
+
+##  About the Project
+
+The **Mozambique Social Indicators Dashboard** was created to transform social data into clear, visual, and easy-to-understand insights.
+
+This application allows users to explore different indicators in an intuitive way, contributing to:
+
+*  Better understanding of data
+*  Support for social analysis
+* Promotion of transparency
+
+>  Note: This project uses mock data for demonstration purposes.
+
+
+## Technologies Used
+
+* Next.js
+* TypeScript
+* Tailwind CSS
+
+##  Features
+
+* Interactive data visualizations (charts & graphs)
+* Filtering by categories (education, health, etc.)
+* Fully responsive design (mobile & desktop)
+* Optimized performance with Next.js
+* Scalable and organized project structure
+
+## Requirements
+
+* Node.js >= 18
+* Yarn
+
+---
 
 ## Getting Started
 
-First, run the development server:
-
 ```bash
-npm run dev
-# or
+# Clone the repository
+git clone <your-repo>
+
+# Navigate into the project folder
+cd project-name
+
+# Install dependencies
+yarn
+
+# Run the development server
 yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open in your browser:
+http://localhost:3000
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+---
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+##  Available Scripts
 
-## Learn More
+* `yarn dev` — starts the development server
+* `yarn build` — builds the app for production
+* `yarn start` — runs the production build
 
-To learn more about Next.js, take a look at the following resources:
+---
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Future Improvements
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+* Integration with real Mozambique data APIs
 
-## Deploy on Vercel
+##  Author
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Developed by **Gédia Jangamo**
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+* Frontend Developer
+* Engineering student in Information Systems and Technologies
+* Passionate about digital accessibility and inclusion
+
+---
+
+## Impact
+
+This project contributes to:
+
+*  Democratizing access to information
+* Supporting data-driven decision-making
+* Promoting the value of social data in Mozambique
+
+---
+
+## Contributions
+
+Contributions, suggestions, and improvements are welcome!
+
+Feel free to open an issue or submit a pull request.

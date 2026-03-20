@@ -70,8 +70,7 @@ http://localhost:3000
 
 Developed by **Gédia Jangamo**
 
-* Frontend Developer
-* Engineering student in Information Systems and Technologies
+* Software Engineer
 * Passionate about digital accessibility and inclusion
 
 ---
